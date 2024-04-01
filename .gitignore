@@ -1,5 +1,5 @@
 # envs
-.*.env
+*.env
 
 # shell scripts
 connect.sh
