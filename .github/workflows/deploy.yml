@@ -20,4 +20,4 @@ jobs:
             cd /home/ubuntu/tikitaball/api
             sudo git pull origin main
             npm ci
-            npx prisma generate
+            npm run prisma:pull
