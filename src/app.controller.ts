@@ -9,9 +9,4 @@ export class AppController {
   getHello() {
     return 'hi';
   }
-
-  @Get('/test')
-  test() {
-    return 'test';
-  }
 }

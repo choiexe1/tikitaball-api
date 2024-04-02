@@ -4,6 +4,7 @@ import { UserService } from './user.service';
 import { DeepMockProxy, mockDeep } from 'jest-mock-extended';
 import { PrismaClient } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
+import { BcryptService } from './bcrypt.service';
 
 describe('UserController', () => {
   let controller: UserController;
@@ -20,6 +21,7 @@ describe('UserController', () => {
           provide: PrismaService,
           useValue: prismaMock,
         },
+        BcryptService,
       ],
     }).compile();
 
