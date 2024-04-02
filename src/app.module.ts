@@ -15,7 +15,7 @@ import { AuthModule } from './auth/auth.module';
       envFilePath: [
         join(
           process.cwd(),
-          `/.${process.env.NODE_ENV == 'dev' ? '.env' : '.prod.env'}`,
+          `/${process.env.NODE_ENV == 'dev' ? '.env' : '.prod.env'}`,
         ),
       ],
       load: [],
