@@ -3,13 +3,14 @@ on:
   push:
     branches: main
 jobs:
-  build-and-test:
+  deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20.x]
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
@@ -39,10 +40,6 @@ jobs:
       - name: E2E test
         run: nf -e .env.test run npm run test:e2e
 
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.0.3
         with:
