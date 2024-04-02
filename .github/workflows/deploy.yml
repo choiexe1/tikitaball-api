@@ -53,4 +53,4 @@ jobs:
             sudo git pull origin main
             npm ci
             npm run prisma:pull
-            nf -e .env.prod run pm2 start dist/main.js -f
+            nf -e .env.prod run pm2 reload ecosystem.config.js
