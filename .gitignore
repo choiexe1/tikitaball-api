@@ -3,7 +3,6 @@
 
 # shell scripts
 connect.sh
-deploy.sh
 
 # pem
 tikitaball.pem

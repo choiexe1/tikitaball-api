@@ -1,0 +1,25 @@
+name: deploy
+on:
+  push:
+    branches: main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.REMOTE_SSH_HOST }}
+          username: ${{ secrets.REMOTE_SSH_USERNAME }}
+          key: ${{ secrets.REMOTE_PRIVATE_KEY }}
+          port: ${{ secrets.REMOTE_SSH_PORT }}
+          script: |
+            whoami
+            cd /home/ubuntu/tikitaball/api
+            sudo git pull origin main
+            npm ci
+            npx prisma generate
+            npm run build
+            npm run start:prod
