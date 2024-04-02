@@ -3,7 +3,7 @@ on:
   push:
     branches: main
 jobs:
-  deploy:
+  setup:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -15,11 +15,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DIRECT_URL: ${{ secrets.DIRECT_URL }}
       - run: npm ci
       - run: npm run build --if-present
       - run: npm run test
       - run: npm run test:e2e
 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.0.3
         with:
