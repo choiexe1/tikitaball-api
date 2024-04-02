@@ -52,5 +52,6 @@ jobs:
             cd /home/ubuntu/tikitaball/api
             sudo git pull origin main
             npm ci
+            npm run build
             npm run prisma:pull
             nf -e .env.prod run pm2 reload ecosystem.config.js
